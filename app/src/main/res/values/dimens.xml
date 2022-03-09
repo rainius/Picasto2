@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="padding_edit">12dp</dimen>
+    <dimen name="login_appname_size">40sp</dimen>
+    <dimen name="mid_text_size">14sp</dimen>
+</resources>

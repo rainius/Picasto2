@@ -11,4 +11,9 @@
     <color name="blue_100">#0195F6</color>
     <color name="red_100">#FF0033</color>
 
+    <color name="edit_bg">#FAFAFA</color>
+    <color name="edit_border">#ECECEC</color>
+    <color name="text_primary">#000000</color>
+    <color name="text_secondary">#8F8F8F</color>
+
 </resources>
