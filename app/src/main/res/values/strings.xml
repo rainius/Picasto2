@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Picasto</string>
+    <string name="password">密码</string>
+    <string name="login">登录</string>
+    <string name="forget_password">忘记密码了？</string>
+    <string name="register">注册</string>
+    <string name="have_no_account">还没有账户？</string>
+    <string name="register_now">立即注册</string>
+    <string name="username">用户名</string>
 </resources>
