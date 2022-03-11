@@ -17,6 +17,8 @@ public class RegisterActivity extends AppCompatActivity
         findViewById(R.id.btn_register).setOnClickListener(this);
         //监听去登录按钮
         findViewById(R.id.btn_go_login).setOnClickListener(this);
+        //监听回退图标按钮
+        findViewById(R.id.btn_register_back).setOnClickListener(this);
     }
 
     @Override
@@ -24,6 +26,7 @@ public class RegisterActivity extends AppCompatActivity
         switch (v.getId()) {
             case R.id.btn_register:
             case R.id.btn_go_login:
+            case R.id.btn_register_back:
                 onBackPressed();
                 break;
         }

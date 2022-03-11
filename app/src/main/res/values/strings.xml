@@ -7,4 +7,6 @@
     <string name="have_no_account">还没有账户？</string>
     <string name="register_now">立即注册</string>
     <string name="username">用户名</string>
+    <string name="input_user_pass">输入用户名和密码</string>
+    <string name="have_an_account">已经有账户了？</string>
 </resources>
