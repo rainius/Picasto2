@@ -7,6 +7,20 @@
     android:foregroundTint="@color/black"
     tools:context=".MainActivity">
 
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/nav_host"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:defaultNavHost="true"
+        app:layout_constraintBottom_toTopOf="@+id/nav_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:navGraph="@navigation/nav_graph" />
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"
         android:layout_width="0dp"
@@ -19,29 +33,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/menu_nav_items" />
 
-    <FrameLayout
-        android:id="@+id/nav_container"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:clickable="true"
-        app:layout_constraintBottom_toTopOf="@+id/nav_view"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
 
-    </FrameLayout>
 
     <ImageView
         android:id="@+id/btn_post"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
         android:clickable="true"
         android:elevation="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:tint="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/nav_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/nav_view"
         app:layout_constraintTop_toTopOf="@+id/nav_view"
-        app:srcCompat="@drawable/ic_post"
-        app:tint="@color/black" />
+        app:srcCompat="@drawable/ic_post" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

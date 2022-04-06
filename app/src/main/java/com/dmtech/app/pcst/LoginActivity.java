@@ -153,7 +153,7 @@ public class LoginActivity extends AppCompatActivity
             // 执行OkHttp网络访问
             String result = "";
             final String LOGIN_URL =
-                    "http://192.168.101.191:8080/PicastoServer/LoginServlet";
+                    "http://192.168.3.183:8080/PicastoServer/LoginServlet";
             OkHttpClient client = new OkHttpClient();
             //创建表单数据为内容的请求报文body，并填入表单字段
             FormBody.Builder bodyBuilder = new FormBody.Builder();
