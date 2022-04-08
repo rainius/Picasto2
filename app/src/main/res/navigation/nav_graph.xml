@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/nav_gallery">
+
+    <fragment
+        android:id="@+id/nav_gallery"
+        android:name="com.dmtech.app.pcst.ui.GalleryFragment"
+        android:label="gallery_fragment"
+        tools:layout="@layout/gallery_fragment" />
+    <fragment
+        android:id="@+id/nav_search"
+        android:name="com.dmtech.app.pcst.ui.SearchFragment"
+        android:label="search_fragment"
+        tools:layout="@layout/search_fragment" />
+    <fragment
+        android:id="@+id/nav_status"
+        android:name="com.dmtech.app.pcst.ui.StatusFragment"
+        android:label="status_fragment"
+        tools:layout="@layout/status_fragment" />
+    <fragment
+        android:id="@+id/nav_person"
+        android:name="com.dmtech.app.pcst.ui.PersonFragment"
+        android:label="person_fragment"
+        tools:layout="@layout/person_fragment" />
+</navigation>
