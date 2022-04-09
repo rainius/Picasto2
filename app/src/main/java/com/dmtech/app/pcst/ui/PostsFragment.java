@@ -28,11 +28,21 @@ public class PostsFragment extends Fragment {
         return inflater.inflate(R.layout.posts_fragment, container, false);
     }
 
+//    @Override
+//    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+//        super.onActivityCreated(savedInstanceState);
+//
+//    }
+
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(PostsViewModel.class);
         // TODO: Use the ViewModel
+        mViewModel.getPosts().observe(getViewLifecycleOwner(), posts -> {
+            //更新UI
+
+        });
     }
 
 }
