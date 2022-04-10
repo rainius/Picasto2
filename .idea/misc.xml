@@ -23,6 +23,7 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.335" />
         <entry key="app/src/main/res/layout/gallery_fragment.xml" value="0.2520775623268698" />
         <entry key="app/src/main/res/layout/person_fragment.xml" value="0.19882246376811594" />
+        <entry key="app/src/main/res/layout/post_item_layout.xml" value="0.30520833333333336" />
         <entry key="app/src/main/res/layout/posts_fragment.xml" value="0.21829710144927536" />
         <entry key="app/src/main/res/layout/search_fragment.xml" value="0.19882246376811594" />
         <entry key="app/src/main/res/layout/status_fragment.xml" value="0.75" />

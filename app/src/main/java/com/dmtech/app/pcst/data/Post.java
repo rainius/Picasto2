@@ -13,6 +13,10 @@ public class Post {
     private String location;
     private long timestamp;
 
+    public Post(String author) {
+        this.author = author;
+    }
+
     public String getAuthorHead() {
         return authorHead;
     }

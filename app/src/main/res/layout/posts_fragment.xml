@@ -4,9 +4,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.PostsFragment">
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_posts"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_fresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_posts"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 </FrameLayout>
