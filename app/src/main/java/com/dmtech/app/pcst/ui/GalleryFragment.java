@@ -15,11 +15,13 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.dmtech.app.pcst.R;
+import com.dmtech.app.pcst.databinding.GalleryFragmentBinding;
 import com.dmtech.app.pcst.util.TypefaceUtil;
 
 public class GalleryFragment extends Fragment {
 
     private GalleryViewModel mViewModel;
+    private GalleryFragmentBinding mBinding;
 
     public static GalleryFragment newInstance() {
         return new GalleryFragment();
@@ -28,10 +30,11 @@ public class GalleryFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.gallery_fragment, container, false);
-
-        Toolbar toolbar = view.findViewById(R.id.toolbar_gallery);
-        initToolbar(toolbar);
+        //获取当前绑定对象
+        mBinding = GalleryFragmentBinding.inflate(inflater);
+        //View view = inflater.inflate(R.layout.gallery_fragment, container, false);
+        View view = mBinding.getRoot();
+        initToolbar(mBinding.toolbarGallery);
         return view;
     }
 

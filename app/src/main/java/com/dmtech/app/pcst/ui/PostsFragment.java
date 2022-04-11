@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,6 +62,7 @@ public class PostsFragment extends Fragment {
         mViewModel.getPosts().observe(getViewLifecycleOwner(), posts -> {
             //更新UI
             mPostAdapter.notifyDataSetChanged();
+            Log.d("Posts", "帖子数：" + posts.size());
         });
 
         mBinding.swipeFresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
