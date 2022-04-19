@@ -21,12 +21,6 @@ public class PostsViewModel extends ViewModel {
         return posts;
     }
 
-    public void addPost(Post post) {
-        List<Post> list = posts.getValue();
-        list.add(post);
-        posts.setValue(list);
-    }
-
     private void loadPosts() {
         //异步加载
         List<Post> postList = new ArrayList<>();
@@ -36,5 +30,11 @@ public class PostsViewModel extends ViewModel {
         postList.add(new Post("Donald"));
         postList.add(new Post("foo"));
         posts.setValue(postList);
+    }
+
+    public void addPost(Post post) {
+        List<Post> list = posts.getValue();
+        list.add(post);
+        posts.setValue(list);
     }
 }

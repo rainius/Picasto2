@@ -64,18 +64,20 @@ public class PostsFragment extends Fragment {
             mPostAdapter.notifyDataSetChanged();
             Log.d("Posts", "帖子数：" + posts.size());
         });
-
+        //处理下拉刷新
         mBinding.swipeFresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                //2秒后关闭刷新
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
+                        //停止刷新状态
                         mBinding.swipeFresh.setRefreshing(false);
+                        //增加数据项
+                        mViewModel.addPost(new Post("new post"));
                     }
-                },2000);
-
-                mViewModel.addPost(new Post("New one"));
+                }, 2000);
             }
         });
     }
