@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.dmtech.app.pcst.entity.UserResponse;
+import com.dmtech.app.pcst.util.HttpHelper;
 import com.google.gson.Gson;
 
 import java.io.IOException;
@@ -99,8 +100,8 @@ public class RegisterActivity extends AppCompatActivity
         protected String doInBackground(Void... voids) {
             // 执行OkHttp网络访问
             String result = "";
-            final String REG_URL =
-                    "http://192.168.101.191:8080/PicastoServer/RegisterServlet";
+//            final String REG_URL =
+//                    "http://192.168.101.191:8080/PicastoServer/RegisterServlet";
             OkHttpClient client = new OkHttpClient();
             //创建表单数据为内容的请求报文body，并填入表单字段
             FormBody.Builder bodyBuilder = new FormBody.Builder();
@@ -110,7 +111,7 @@ public class RegisterActivity extends AppCompatActivity
             FormBody body = bodyBuilder.build();
             //定义本次登录的请求:POST操作，提交表单数据
             Request.Builder requestBuilder = new Request.Builder();
-            requestBuilder.url(REG_URL).post(body);
+            requestBuilder.url(HttpHelper.getRegisterServiceUrl()).post(body);
             Request request = requestBuilder.build();
             //用client发送request，获得响应response
             try {

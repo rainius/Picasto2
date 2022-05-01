@@ -8,8 +8,10 @@ import androidx.navigation.ui.NavigationUI;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
+import com.dmtech.app.pcst.util.SessionUtil;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -18,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         //获取导航宿主Fragment
         NavHostFragment navHostFragment =
                 (NavHostFragment) getSupportFragmentManager()
@@ -29,6 +30,6 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView navView = findViewById(R.id.nav_view);
         //实现导航
         NavigationUI.setupWithNavController(navView, navController);
-
+        Log.d("Picasto", "user: " + SessionUtil.getUsername(this));
     }
 }

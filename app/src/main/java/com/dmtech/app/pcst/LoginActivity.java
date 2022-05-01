@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dmtech.app.pcst.entity.UserResponse;
+import com.dmtech.app.pcst.util.HttpHelper;
 import com.dmtech.app.pcst.util.TypefaceUtil;
 import com.google.gson.Gson;
 
@@ -152,8 +153,8 @@ public class LoginActivity extends AppCompatActivity
         protected String doInBackground(Void... voids) {
             // 执行OkHttp网络访问
             String result = "";
-            final String LOGIN_URL =
-                    "http://192.168.101.191:8080/PicastoServer/LoginServlet";
+//            final String LOGIN_URL =
+//                    "http://192.168.3.219:8080/PicastoServer/LoginServlet";
             OkHttpClient client = new OkHttpClient();
             //创建表单数据为内容的请求报文body，并填入表单字段
             FormBody.Builder bodyBuilder = new FormBody.Builder();
@@ -163,7 +164,7 @@ public class LoginActivity extends AppCompatActivity
             FormBody body = bodyBuilder.build();
             //定义本次登录的请求:POST操作，提交表单数据
             Request.Builder requestBuilder = new Request.Builder();
-            requestBuilder.url(LOGIN_URL).post(body);
+            requestBuilder.url(HttpHelper.getLoginServiceUrl()).post(body);
             Request request = requestBuilder.build();
             //用client发送request，获得响应response
             try {

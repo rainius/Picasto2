@@ -22,6 +22,7 @@ import com.dmtech.app.pcst.R;
 import com.dmtech.app.pcst.adapter.PostAdapter;
 import com.dmtech.app.pcst.data.Post;
 import com.dmtech.app.pcst.databinding.PostsFragmentBinding;
+import com.dmtech.app.pcst.util.SessionUtil;
 
 import java.util.ArrayList;
 
@@ -55,11 +56,13 @@ public class PostsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        // 读取当前登录的用户名
+        String username = SessionUtil.getUsername(getContext());
         mViewModel = new ViewModelProvider(this).get(PostsViewModel.class);
         // TODO: Use the ViewModel
-        mPostAdapter = new PostAdapter(mViewModel.getPosts());
+        mPostAdapter = new PostAdapter(mViewModel.getPosts(username));
         mBinding.rvPosts.setAdapter(mPostAdapter);
-        mViewModel.getPosts().observe(getViewLifecycleOwner(), posts -> {
+        mViewModel.getPosts(username).observe(getViewLifecycleOwner(), posts -> {
             //更新UI
             mPostAdapter.notifyDataSetChanged();
             Log.d("Posts", "帖子数：" + posts.size());

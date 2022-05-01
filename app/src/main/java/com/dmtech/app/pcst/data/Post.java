@@ -1,8 +1,41 @@
 package com.dmtech.app.pcst.data;
 
+import android.text.TextUtils;
+
+import com.dmtech.app.pcst.entity.PostView;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class Post {
+    public static Post fromPostView(PostView pv) {
+        Post post = new Post();
+        post.setId(pv.getId());
+        post.setAuthorHead(pv.getAuthorHead());
+        post.setAuthor(pv.getAuthor());
+        post.setText(pv.getTextContent());
+        post.setLike(pv.isLike() == 1);
+        post.setLocation(pv.getLocation());
+        post.setTimestamp(pv.getTimestamp());
+        post.setNumComment(pv.getNumComment());
+        post.setNumLike(pv.getNumLike());
+        //构建图片列表
+        List<String> images = new ArrayList<>();
+        if (!TextUtils.isEmpty(pv.getImage1())) { images.add(pv.getImage1()); }
+        if (!TextUtils.isEmpty(pv.getImage2())) { images.add(pv.getImage2()); }
+        if (!TextUtils.isEmpty(pv.getImage3())) { images.add(pv.getImage3()); }
+        if (!TextUtils.isEmpty(pv.getImage4())) { images.add(pv.getImage4()); }
+        if (!TextUtils.isEmpty(pv.getImage5())) { images.add(pv.getImage5()); }
+        if (!TextUtils.isEmpty(pv.getImage6())) { images.add(pv.getImage6()); }
+        if (!TextUtils.isEmpty(pv.getImage7())) { images.add(pv.getImage7()); }
+        if (!TextUtils.isEmpty(pv.getImage8())) { images.add(pv.getImage8()); }
+        if (!TextUtils.isEmpty(pv.getImage9())) { images.add(pv.getImage9()); }
+        post.setPhotos(images);
+
+        return post;
+    }
+
+    private Long id;
     private String authorHead;
     private String author;
     private List<String> photos;
@@ -13,8 +46,19 @@ public class Post {
     private String location;
     private long timestamp;
 
+    public Post() {
+    }
+
     public Post(String author) {
         this.author = author;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getAuthorHead() {

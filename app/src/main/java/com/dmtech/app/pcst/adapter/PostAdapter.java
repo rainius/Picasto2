@@ -14,6 +14,8 @@ import com.bumptech.glide.Glide;
 import com.dmtech.app.pcst.R;
 import com.dmtech.app.pcst.data.Post;
 import com.dmtech.app.pcst.databinding.PostItemLayoutBinding;
+import com.dmtech.app.pcst.ui.DateTimeUtil;
+import com.dmtech.app.pcst.util.HttpHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +44,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
         holder.binding.tvPostAuthor.setText(post.getAuthor());
         //绑定用户头像
         Glide.with(holder.binding.ivAuthorHead)
-                .load(post.getAuthorHead())
+                .load(HttpHelper.getImageUrl(post.getAuthorHead()))
                 .placeholder(R.drawable.logo_placeholder)
                 .into(holder.binding.ivAuthorHead);
         //为VP2关联图集
@@ -63,6 +65,16 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
         } else {
             holder.binding.ivLike.setImageResource(R.drawable.ic_like_line);
         }
+
+        //点赞数
+        holder.binding.tvNumLike.setText(String.valueOf(post.getNumLike()));
+        //评论数
+        holder.binding.tvNumComment.setText(String.valueOf(post.getNumComment()));
+        //正文
+        holder.binding.tvText.setText(String.valueOf(post.getText()));
+        holder.binding.tvLocation.setText(String.valueOf(post.getLocation()));
+        long timestamp = post.getTimestamp();
+        holder.binding.tvDatetime.setText(DateTimeUtil.getDateTime(timestamp));
     }
 
     @Override

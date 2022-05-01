@@ -1,5 +1,6 @@
 package com.dmtech.app.pcst.adapter;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,9 @@ import com.bumptech.glide.Glide;
 import com.dmtech.app.pcst.R;
 import com.dmtech.app.pcst.data.Post;
 import com.dmtech.app.pcst.databinding.PostAlbumLayoutBinding;
+import com.dmtech.app.pcst.util.HttpHelper;
+
+import java.util.List;
 
 public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumHolder> {
 
@@ -39,15 +43,16 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumHolder>
 
     @Override
     public void onBindViewHolder(@NonNull AlbumHolder holder, int position) {
-        int photoId = SAMPLE_PHOTOS[position];
+        String photoPath = post.getPhotos().get(position);
+        Log.d("Picasto", "photo path: " + photoPath);
         Glide.with(holder.binding.ivAlbumPhoto)
-                .load(photoId)
+                .load(HttpHelper.getImageUrl(photoPath))
                 .into(holder.binding.ivAlbumPhoto);
     }
 
     @Override
     public int getItemCount() {
-        return SAMPLE_PHOTOS.length;
+        return post.getPhotos().size();
     }
 
     public static class AlbumHolder extends RecyclerView.ViewHolder {
