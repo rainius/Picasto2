@@ -76,6 +76,7 @@ public class PostsFragment extends Fragment {
                         mBinding.swipeFresh.setRefreshing(false);
                         //增加数据项
                         mViewModel.addPost(new Post("new post"));
+                        Toast.makeText(getContext(), "已加载最新内容", Toast.LENGTH_SHORT).show();
                     }
                 }, 2000);
             }
