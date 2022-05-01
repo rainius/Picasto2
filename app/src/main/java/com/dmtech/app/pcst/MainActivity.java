@@ -2,10 +2,15 @@ package com.dmtech.app.pcst;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.ui.NavigationUI;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.widget.TextView;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -14,13 +19,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //获取标题文本视图
-        TextView hw = findViewById(R.id.tv_hw);
-        //从assets创建字体对象
-        Typeface typeface = Typeface.createFromAsset(
-                getAssets(), "Lucida Calligraphy.ttf");
-        //为文本视图设置字体
-        hw.setTypeface(typeface);
+        //获取导航宿主Fragment
+        NavHostFragment navHostFragment =
+                (NavHostFragment) getSupportFragmentManager()
+                        .findFragmentById(R.id.fragments_container);
+        //获取导航控制器对象
+        NavController navController = navHostFragment.getNavController();
+        //获取底部导航视图
+        BottomNavigationView navView = findViewById(R.id.nav_view);
+        //实现导航
+        NavigationUI.setupWithNavController(navView, navController);
 
     }
 }

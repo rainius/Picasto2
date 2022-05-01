@@ -1,14 +1,18 @@
 package com.dmtech.app.pcst.util;
 
+import android.content.Context;
 import android.graphics.Typeface;
 import android.widget.TextView;
 
-/**
- * 字体工具类
- */
 public class TypefaceUtil {
+
+    /**
+     * 为文本视图tv设定字体
+     * @param tv
+     * @param typePath
+     */
     public static void setTypeface(TextView tv, String typePath) {
-        //创建字体对象
+        //从assets创建字体对象
         Typeface typeface = Typeface.createFromAsset(
                 tv.getContext().getAssets(), typePath);
         //为文本视图设置字体

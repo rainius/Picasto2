@@ -20,5 +20,19 @@
         <item name="android:textColor">#ffffff</item><!--toolbar标题字体颜色-->
     </style>
 
+    <style name="Theme.Login" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryVariant">@color/grey_100</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/blue_100</item>
+        <item name="colorSecondaryVariant">@color/blue_100</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+
 
 </resources>
