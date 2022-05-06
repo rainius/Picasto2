@@ -1,7 +1,6 @@
-package com.dmtech.app.pcst.ui;
+package com.dmtech.app.pcst.util;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 public class DateTimeUtil {

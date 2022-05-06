@@ -1,5 +1,4 @@
 package com.dmtech.app.pcst.entity;
-
 /**
  * 主题视图类
  * 对应于服务端传来的主题列表
@@ -24,12 +23,12 @@ public class PostView {
 	private int numComment;
 	private int numLike;
 
-	public int isLike() {
+	public int getIsLike() {
 		return isLike;
 	}
 
-	public void setLike(int like) {
-		isLike = like;
+	public void setIsLike(int isLike) {
+		this.isLike = isLike;
 	}
 
 	public Long getId() {

@@ -19,11 +19,11 @@ import java.util.List;
 public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumHolder> {
 
     //样例图片数组
-    private static final int[] SAMPLE_PHOTOS = {
-            R.drawable.sample0,
-            R.drawable.sample1,
-            R.drawable.sample2
-    };
+//    private static final int[] SAMPLE_PHOTOS = {
+//            R.drawable.sample0,
+//            R.drawable.sample1,
+//            R.drawable.sample2
+//    };
 
     private Post post;
 
@@ -43,10 +43,13 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumHolder>
 
     @Override
     public void onBindViewHolder(@NonNull AlbumHolder holder, int position) {
+        //获取当前页图片的相对路径
         String photoPath = post.getPhotos().get(position);
+        //生成对应图片URL
+        String photoUrl = HttpHelper.getImageUrl(photoPath);
         Log.d("Picasto", "photo path: " + photoPath);
         Glide.with(holder.binding.ivAlbumPhoto)
-                .load(HttpHelper.getImageUrl(photoPath))
+                .load(photoUrl) //从URL加载图片
                 .into(holder.binding.ivAlbumPhoto);
     }
 

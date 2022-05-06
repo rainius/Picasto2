@@ -9,18 +9,21 @@ import java.util.List;
 
 public class Post {
     public static Post fromPostView(PostView pv) {
+        //生成新的Post对象
         Post post = new Post();
+        //用传入的PostView对象内容填充post
         post.setId(pv.getId());
         post.setAuthorHead(pv.getAuthorHead());
         post.setAuthor(pv.getAuthor());
         post.setText(pv.getTextContent());
-        post.setLike(pv.isLike() == 1);
+        post.setLike(pv.getIsLike() == 1);
         post.setLocation(pv.getLocation());
         post.setTimestamp(pv.getTimestamp());
         post.setNumComment(pv.getNumComment());
         post.setNumLike(pv.getNumLike());
         //构建图片列表
         List<String> images = new ArrayList<>();
+        //如果pv中的图片存在，就添加到图片列表
         if (!TextUtils.isEmpty(pv.getImage1())) { images.add(pv.getImage1()); }
         if (!TextUtils.isEmpty(pv.getImage2())) { images.add(pv.getImage2()); }
         if (!TextUtils.isEmpty(pv.getImage3())) { images.add(pv.getImage3()); }
@@ -30,6 +33,7 @@ public class Post {
         if (!TextUtils.isEmpty(pv.getImage7())) { images.add(pv.getImage7()); }
         if (!TextUtils.isEmpty(pv.getImage8())) { images.add(pv.getImage8()); }
         if (!TextUtils.isEmpty(pv.getImage9())) { images.add(pv.getImage9()); }
+        //将图片列表填充到post对象
         post.setPhotos(images);
 
         return post;

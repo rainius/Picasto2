@@ -14,7 +14,8 @@ import com.bumptech.glide.Glide;
 import com.dmtech.app.pcst.R;
 import com.dmtech.app.pcst.data.Post;
 import com.dmtech.app.pcst.databinding.PostItemLayoutBinding;
-import com.dmtech.app.pcst.ui.DateTimeUtil;
+
+import com.dmtech.app.pcst.util.DateTimeUtil;
 import com.dmtech.app.pcst.util.HttpHelper;
 
 import java.util.ArrayList;
@@ -44,9 +45,11 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
         holder.binding.tvPostAuthor.setText(post.getAuthor());
         //绑定用户头像
         Glide.with(holder.binding.ivAuthorHead)
-                .load(HttpHelper.getImageUrl(post.getAuthorHead()))
+                .load(HttpHelper.getImageUrl(post.getAuthorHead()))//获取头像URL后加载
                 .placeholder(R.drawable.logo_placeholder)
                 .into(holder.binding.ivAuthorHead);
+
+
         //为VP2关联图集
         holder.binding.vp2Album.setAdapter(new AlbumAdapter(post));
         //处理点赞相关操作
@@ -72,9 +75,13 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
         holder.binding.tvNumComment.setText(String.valueOf(post.getNumComment()));
         //正文
         holder.binding.tvText.setText(String.valueOf(post.getText()));
+        //位置
         holder.binding.tvLocation.setText(String.valueOf(post.getLocation()));
+        //时间
         long timestamp = post.getTimestamp();
-        holder.binding.tvDatetime.setText(DateTimeUtil.getDateTime(timestamp));
+        //将毫秒数转换成可读的日期
+        String readable = DateTimeUtil.getDateTime(timestamp);
+        holder.binding.tvDatetime.setText(readable);
     }
 
     @Override
