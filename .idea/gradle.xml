@@ -9,8 +9,8 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
-            <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/app" />
+            <option value="$USER_HOME$/Documents/Jingz/Teach/repo/2019/Picsto" />
+            <option value="$USER_HOME$/Documents/Jingz/Teach/repo/2019/Picsto/app" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
