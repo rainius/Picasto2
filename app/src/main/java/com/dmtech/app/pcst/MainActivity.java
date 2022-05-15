@@ -40,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
         mBinding.ivAddPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showPictureSelector();
             }
         });
 
@@ -56,22 +55,5 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navView, navController);
         Log.d("Picasto", "user: " + SessionUtil.getUsername(this));
 
-    }
-
-    private void showPictureSelector() {
-        PictureSelector.create(this)
-                .openGallery(SelectMimeType.ofImage())
-                .setImageEngine(GlideEngine.createGlideEngine())
-                .forResult(new OnResultCallbackListener<LocalMedia>() {
-                    @Override
-                    public void onResult(ArrayList<LocalMedia> result) {
-
-                    }
-
-                    @Override
-                    public void onCancel() {
-
-                    }
-                });
     }
 }
