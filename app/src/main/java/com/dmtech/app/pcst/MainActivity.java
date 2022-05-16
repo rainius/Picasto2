@@ -44,21 +44,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //使用视图绑定以操作布局中各视图元素
         mBinding = ActivityMainBinding.inflate(getLayoutInflater());
-//        setContentView(R.layout.activity_main);
         setContentView(mBinding.getRoot());
-
-        //定义启动器以启动一个需要返回结果的Activity
-        mComposeLauncher = setupComposeLauncher();
         // 点击发帖按钮
         mBinding.ivAddPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d("Compose", "点此去发帖");
                 //启动主题创作页
                 Intent intent = new Intent(MainActivity.this, PostComposeActivity.class);
-                mComposeLauncher.launch(intent);
+                startActivity(intent);
             }
         });
 
+        //定义启动器以启动一个需要返回结果的Activity
+//        mComposeLauncher = setupComposeLauncher();
+//        Intent intent = new Intent(MainActivity.this, PostComposeActivity.class);
+//        mComposeLauncher.launch(intent);
         //获取导航宿主Fragment
         NavHostFragment navHostFragment =
                 (NavHostFragment) getSupportFragmentManager()
@@ -80,8 +81,4 @@ public class MainActivity extends AppCompatActivity {
                     //TODO: 如果返回结果为1，则重新获取数据，为0则忽略
                 });
     }
-
-
-
-
 }
