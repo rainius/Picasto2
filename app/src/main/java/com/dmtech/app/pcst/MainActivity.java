@@ -1,11 +1,14 @@
 package com.dmtech.app.pcst;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,6 +29,13 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    //访问创作页的请求码
+    private static final int REQUEST_CODE_COMPOSE = 1;
+    private static final int RESULT_CODE_SENT = 1;
+    private static final int RESULT_CODE_CANCEL = 0;
+
+    private ActivityResultLauncher<Intent> mComposeLauncher;
+
     //视图绑定对象
     ActivityMainBinding mBinding;
 
@@ -36,10 +46,16 @@ public class MainActivity extends AppCompatActivity {
         mBinding = ActivityMainBinding.inflate(getLayoutInflater());
 //        setContentView(R.layout.activity_main);
         setContentView(mBinding.getRoot());
+
+        //定义启动器以启动一个需要返回结果的Activity
+        mComposeLauncher = setupComposeLauncher();
         // 点击发帖按钮
         mBinding.ivAddPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //启动主题创作页
+                Intent intent = new Intent(MainActivity.this, PostComposeActivity.class);
+                mComposeLauncher.launch(intent);
             }
         });
 
@@ -54,6 +70,18 @@ public class MainActivity extends AppCompatActivity {
         //实现导航
         NavigationUI.setupWithNavController(navView, navController);
         Log.d("Picasto", "user: " + SessionUtil.getUsername(this));
-
     }
+
+    private ActivityResultLauncher<Intent> setupComposeLauncher() {
+        return registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> { //处理返回结果
+                    Log.d("Compose", "Result code: " + result.getResultCode());
+                    //TODO: 如果返回结果为1，则重新获取数据，为0则忽略
+                });
+    }
+
+
+
+
 }

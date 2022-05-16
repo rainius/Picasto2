@@ -10,4 +10,7 @@
     <string name="input_user_pass">输入用户名和密码</string>
     <string name="have_an_account">已经有账户了？</string>
     <string name="server_error">服务器无法访问。</string>
+    <string name="cur_location">所在位置</string>
+    <string name="cur_think">此刻的想法</string>
+    <string name="compose_finish">发表</string>
 </resources>

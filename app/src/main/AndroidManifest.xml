@@ -2,8 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.dmtech.app.pcst">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <!--Picture Selector权限-->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- Picture Selector权限 -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
@@ -16,19 +15,13 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
-    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
-
-    <!--适配Android 11-->
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" /> <!-- 适配Android 11 -->
     <queries package="${applicationId}">
         <intent>
-            <action android:name="android.media.action.IMAGE_CAPTURE">
-
-            </action>
+            <action android:name="android.media.action.IMAGE_CAPTURE"></action>
         </intent>
         <intent>
-            <action android:name="android.media.action.ACTION_VIDEO_CAPTURE">
-
-            </action>
+            <action android:name="android.media.action.ACTION_VIDEO_CAPTURE"></action>
         </intent>
     </queries>
 
@@ -38,12 +31,17 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
-        android:theme="@style/Theme.Picsto">
+        android:theme="@style/Theme.Picsto"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".PostComposeActivity"
+            android:theme="@style/Theme.Login"
+            android:label=""
+            android:exported="false" />
         <activity
             android:name=".RegisterActivity"
-            android:label="注册"
-            android:exported="false" />
+            android:exported="false"
+            android:label="注册" />
         <activity
             android:name=".LoginActivity"
             android:exported="true">
@@ -55,7 +53,7 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
     </application>
 
 </manifest>

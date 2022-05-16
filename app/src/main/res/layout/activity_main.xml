@@ -35,7 +35,7 @@
         android:clickable="true"
         android:elevation="10dp"
         android:padding="16dp"
-        android:tint="@color/text_primary"
+        app:tint="@color/text_primary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/nav_view"
