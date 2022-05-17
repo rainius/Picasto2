@@ -28,4 +28,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/iv_add_post"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:elevation="10dp"
+        android:padding="16dp"
+        android:tint="@color/text_primary"
+        app:layout_constraintBottom_toBottomOf="@+id/nav_view"
+        app:layout_constraintEnd_toEndOf="@+id/nav_view"
+        app:layout_constraintStart_toStartOf="@+id/nav_view"
+        app:layout_constraintTop_toTopOf="@+id/nav_view"
+        app:srcCompat="@drawable/ic_post" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

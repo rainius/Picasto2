@@ -1,7 +1,7 @@
 package com.dmtech.app.pcst.util;
 
 public class HttpHelper {
-    private static final String HOST_IP = "192.168.3.219";
+    private static final String HOST_IP = "192.168.1.50";
     private static final String HOST_PORT = "8080";
     private static final String HOST_SITE =
             "http://" + HOST_IP + ":" + HOST_PORT + "/PicastoServer";
