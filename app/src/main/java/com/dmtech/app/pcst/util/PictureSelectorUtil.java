@@ -25,14 +25,17 @@ public class PictureSelectorUtil {
      * @param maxSelectNum 可以选择几张图片
      * @param listener 选择完成后的处理
      */
-    public static void show(Context context, int maxSelectNum, OnResultCallbackListener<LocalMedia> listener) {
-        PictureSelector.create(context)
-                .openGallery(SelectMimeType.ofImage())
-                .setImageEngine(GlideEngine.createGlideEngine())
-                .setEditMediaInterceptListener(
-                        new MeOnMediaEditInterceptListener(getSandboxPath(context), buildOptions(context)))
-                .setMaxSelectNum(maxSelectNum)
-                .forResult(listener);
+    public static void show(Context context,
+                            int maxSelectNum,
+                            OnResultCallbackListener<LocalMedia> listener) {
+        PictureSelector.create(context) //创建对象
+                .openGallery(SelectMimeType.ofImage())  //打开相册，筛选图片
+                .setImageEngine(GlideEngine.createGlideEngine())   //使用Glide图片加载库
+                .setEditMediaInterceptListener( //设定图片编辑器
+                        new MeOnMediaEditInterceptListener(getSandboxPath(context),
+                                buildOptions(context)))
+                .setMaxSelectNum(maxSelectNum)  //设定可选图片数量
+                .forResult(listener);   // 启动图片选择页面，并在完成后调用回调
     }
 
 

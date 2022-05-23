@@ -68,16 +68,9 @@ public class PostComposeActivity extends AppCompatActivity {
     private void onAddImage() {
         //发起用户添加图片操作
         Log.d("Compose", "添加新图片");
-//        openPictureSelector(9 - mSelectedImageAdapter.getSelectedImages().size());
+        openPictureSelector(9 - mSelectedImageAdapter.getSelectedImages().size());
     }
-
-    private void onDeleteSelectedImage(int position) {
-        //发起删除第position个已添加图片的操作
-        Log.d("Compose", "删除图片" + position);
-    }
-
-
-
+    //开启图片选取页面
     private void openPictureSelector(int canSelectNum) {
         PictureSelectorUtil.show(this, canSelectNum, new OnResultCallbackListener<LocalMedia>() {
             @Override
@@ -92,6 +85,15 @@ public class PostComposeActivity extends AppCompatActivity {
             public void onCancel() { }
         });
     }
+
+    private void onDeleteSelectedImage(int position) {
+        //发起删除第position个已添加图片的操作
+        Log.d("Compose", "删除图片" + position);
+    }
+
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(@NonNull Menu menu) {
