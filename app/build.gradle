@@ -42,4 +42,8 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:4.9.0")
     // 引入GSON
     implementation 'com.google.code.gson:gson:2.9.0'
+    //导航库
+    implementation 'androidx.navigation:navigation-fragment:2.3.5'
+    implementation 'androidx.navigation:navigation-ui:2.3.5'
+
 }
