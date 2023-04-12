@@ -3,6 +3,9 @@ plugins {
 }
 
 android {
+    viewBinding {
+        enabled = true
+    }
     compileSdk 31
 
     defaultConfig {
@@ -45,5 +48,8 @@ dependencies {
     //导航库
     implementation 'androidx.navigation:navigation-fragment:2.3.5'
     implementation 'androidx.navigation:navigation-ui:2.3.5'
+    //下拉刷新implementation
+    "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+
 
 }
