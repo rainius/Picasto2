@@ -21,6 +21,7 @@ import com.dmtech.app.pcst.R;
 import com.dmtech.app.pcst.adapter.PostAdapter;
 import com.dmtech.app.pcst.data.Post;
 import com.dmtech.app.pcst.databinding.FragmentPostsBinding;
+import com.dmtech.app.pcst.util.SessionUtil;
 
 public class PostsFragment extends Fragment {
 
@@ -62,11 +63,12 @@ public class PostsFragment extends Fragment {
         //取得本页面关联的视图模型
         mViewModel = new ViewModelProvider(this).get(PostsViewModel.class);
         //用视图模型中加载的数据初始化适配器
-        mPostAdapter = new PostAdapter(mViewModel.getPosts());
+        String username = SessionUtil.getUsername(getContext());
+        mPostAdapter = new PostAdapter(mViewModel.getPosts(username));
         //绑定适配器
         mBinding.rvPosts.setAdapter(mPostAdapter);
         //在此页面视图已经创建起来，开始对帖子列表数据进行观察
-        mViewModel.getPosts().observe(
+        mViewModel.getPosts(username).observe(
                 getViewLifecycleOwner(),
                 posts -> {
                     //更新UI

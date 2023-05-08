@@ -1,13 +1,25 @@
 package com.dmtech.app.pcst.ui;
 
+import android.util.Log;
+
+import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.dmtech.app.pcst.data.Post;
+import com.dmtech.app.pcst.util.HttpHelper;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 //PostsFragment对应的视图模型
 public class PostsViewModel extends ViewModel {
@@ -15,11 +27,15 @@ public class PostsViewModel extends ViewModel {
     //可响应内容变化的帖子数据列表
     private MutableLiveData<List<Post>> posts;
 
+    private String username;
+
     //对外提供帖子数据
-    public LiveData<List<Post>> getPosts() {
+//    public LiveData<List<Post>> getPosts() {
+    public LiveData<List<Post>> getPosts(String username) {
         if (posts == null) {
             //只在初次提供时创建数据结构
             posts = new MutableLiveData<>();
+            this.username = username;
             loadPosts();
         }
         return posts;
@@ -28,8 +44,38 @@ public class PostsViewModel extends ViewModel {
     public void loadPosts() {
         //加载帖子数据
         //使用测试数据
-        List<Post> postList = mockPosts();
+        List<Post> postList = new ArrayList<>();
         posts.setValue(postList);
+        //访问主题列表服务
+        OkHttpClient client = new OkHttpClient();
+        //先配置消息体构建器
+        FormBody.Builder bodyBuilder = new FormBody.Builder();
+        bodyBuilder.add("username", username);
+        //构建body对象
+        FormBody body = bodyBuilder.build();
+        //配置请求参数
+        Request.Builder requestBuilder = new Request.Builder();
+        //提交LoginServlet的URL
+        requestBuilder.url(HttpHelper.getGetPostListServiceUrl())
+                //采用POST方式提交用户信息
+                .post(body);
+        //生成请求对象
+        Request request = requestBuilder.build();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                //从响应中提取服务端返回的信息
+                String result = response.body().string();
+                Log.d("Picasto", "Posts result: " + result);
+
+            }
+        });
+
     }
 
     private List<Post> mockPosts() {
@@ -44,8 +90,8 @@ public class PostsViewModel extends ViewModel {
 
     //增加新帖子
     public void addPost(Post post) {
-        List<Post> list = posts.getValue();
-        list.add(post);
-        posts.setValue(list);
+//        List<Post> list = posts.getValue();
+//        list.add(post);
+//        posts.setValue(list);
     }
 }

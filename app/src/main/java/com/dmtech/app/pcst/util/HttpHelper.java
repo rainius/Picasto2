@@ -13,4 +13,13 @@ public class HttpHelper {
     public static String getLoginServiceUrl() {
         return HOST_SITE + "/LoginServlet";
     }
+    //URL to GetPostListServlet
+    public static String getGetPostListServiceUrl() {
+        return HOST_SITE + "/GetPostListServlet";
+    }
+    //URL to images
+    public static String getImageUrl(String path) {
+        return HOST_SITE + "/" + path;
+    }
+
 }
