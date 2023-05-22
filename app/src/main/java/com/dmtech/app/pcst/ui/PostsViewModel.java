@@ -1,5 +1,6 @@
 package com.dmtech.app.pcst.ui;
 
+import android.os.Handler;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -8,9 +9,13 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.dmtech.app.pcst.data.Post;
+import com.dmtech.app.pcst.entity.PostView;
 import com.dmtech.app.pcst.util.HttpHelper;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +33,8 @@ public class PostsViewModel extends ViewModel {
     private MutableLiveData<List<Post>> posts;
 
     private String username;
+    //android.os.Handler
+    private Handler mMainHandler = new Handler();
 
     //对外提供帖子数据
 //    public LiveData<List<Post>> getPosts() {
@@ -72,7 +79,22 @@ public class PostsViewModel extends ViewModel {
                 //从响应中提取服务端返回的信息
                 String result = response.body().string();
                 Log.d("Picasto", "Posts result: " + result);
-
+                Gson gson = new Gson();
+                //声明目标类型：PostView的列表
+                Type type = (new TypeToken<List<PostView>>() {}).getType();
+                List<PostView> postViews = gson.fromJson(result, type);
+                //转为Post对象列表，以供界面显示
+                List<Post> postList = new ArrayList<>();
+                for (PostView pv : postViews) {
+                    postList.add(Post.fromPostView(pv));
+                }
+                mMainHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        //更新数据，触发界面更新
+                        posts.setValue(postList);
+                    }
+                });
             }
         });
 

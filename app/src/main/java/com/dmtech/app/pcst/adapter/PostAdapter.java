@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide;
 import com.dmtech.app.pcst.R;
 import com.dmtech.app.pcst.data.Post;
 import com.dmtech.app.pcst.databinding.PostItemLayoutBinding;
+import com.dmtech.app.pcst.util.DateTimeUtil;
 import com.dmtech.app.pcst.util.HttpHelper;
 
 import java.util.List;
@@ -46,7 +47,8 @@ public class PostAdapter
         holder.binding.tvPostAuthor.setText(post.getAuthor());
         //绑定用户头像
         Glide.with(holder.binding.ivAuthorHead)
-                .load(R.drawable.logo_placeholder)//获取头像URL后加载
+//                .load(R.drawable.logo_placeholder)//获取头像URL后加载
+                .load(HttpHelper.getImageUrl(post.getAuthorHead()))//获取头像URL后加载
                 .into(holder.binding.ivAuthorHead);
         //为VP2关联图集
         holder.binding.vp2Album.setAdapter(new AlbumAdapter(post));
@@ -66,6 +68,16 @@ public class PostAdapter
         } else {
             holder.binding.ivLike.setImageResource(R.drawable.ic_like_line);
         }
+        //点赞数
+        holder.binding.tvNumLike.setText("" + post.getNumLike());
+        //评论数
+        holder.binding.tvNumComment.setText("" + post.getNumComment());
+        //正文
+        holder.binding.tvText.setText(post.getText());
+        //位置
+        holder.binding.tvLocation.setText(post.getLocation());
+        //时间
+        holder.binding.tvDatetime.setText(DateTimeUtil.getDateTime(post.getTimestamp()));
     }
 
     @Override
