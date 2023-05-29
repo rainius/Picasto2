@@ -6,20 +6,36 @@ import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
+import com.dmtech.app.pcst.databinding.ActivityMainBinding;
 import com.dmtech.app.pcst.util.TypefaceUtil;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
+    private ActivityMainBinding mBinding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+//        setContentView(R.layout.activity_main);
+        mBinding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(mBinding.getRoot());
 
+        //点击发帖按钮
+        mBinding.ivAddPost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("Picasto", "Click to add a post.");
+                Intent intent = new Intent(MainActivity.this, PostComposeActivity.class);
+            }
+        });
         //获取导航宿主Fragment
         NavHostFragment navHostFragment =
                 (NavHostFragment) getSupportFragmentManager()
