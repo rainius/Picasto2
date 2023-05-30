@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Log.d("Picasto", "Click to add a post.");
                 Intent intent = new Intent(MainActivity.this, PostComposeActivity.class);
+                startActivity(intent);
             }
         });
         //获取导航宿主Fragment
