@@ -75,6 +75,10 @@ public class SelectedImageAdapter extends RecyclerView.Adapter<SelectedImageAdap
 
     @Override
     public void onBindViewHolder(@NonNull ImageHolder holder, int position) {
+        //清空监听
+        holder.binding.ivSelected.setOnClickListener(null);
+        holder.binding.ivSelected.setOnLongClickListener(null);
+
         if (position == selectedImages.size()) {
             //添加按钮
             holder.binding.ivSelected.setImageResource(R.drawable.ic_add);

@@ -21,5 +21,8 @@ public class HttpHelper {
     public static String getImageUrl(String path) {
         return HOST_SITE + "/" + path;
     }
-
+    //URL to AddPostServlet
+    public static String getAddPostServiceUrl() {
+        return HOST_SITE + "/AddPostServlet";
+    }
 }

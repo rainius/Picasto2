@@ -8,7 +8,10 @@ import androidx.fragment.app.Fragment;
 import com.luck.picture.lib.basic.PictureSelector;
 import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.config.SelectMimeType;
+import com.luck.picture.lib.engine.CompressEngine;
+import com.luck.picture.lib.engine.CompressFileEngine;
 import com.luck.picture.lib.entity.LocalMedia;
+import com.luck.picture.lib.interfaces.OnKeyValueResultCallbackListener;
 import com.luck.picture.lib.interfaces.OnMediaEditInterceptListener;
 import com.luck.picture.lib.interfaces.OnResultCallbackListener;
 import com.luck.picture.lib.utils.DateUtils;
@@ -16,6 +19,11 @@ import com.luck.pictureselector.GlideEngine;
 import com.yalantis.ucrop.UCrop;
 
 import java.io.File;
+import java.util.ArrayList;
+
+import top.zibin.luban.Luban;
+import top.zibin.luban.OnNewCompressListener;
+import top.zibin.luban.OnRenameListener;
 
 
 public class PictureSelectorUtil {
@@ -35,7 +43,16 @@ public class PictureSelectorUtil {
                         new MeOnMediaEditInterceptListener(getSandboxPath(context),
                                 buildOptions(context)))
                 .setMaxSelectNum(maxSelectNum)  //设定可选图片数量
+                .setCompressEngine(getCompressEngine()) // 图片压缩
                 .forResult(listener);   // 启动图片选择页面，并在完成后调用回调
+    }
+
+    /**
+     * 获取图像压缩引擎
+     * @return
+     */
+    private static CompressFileEngine getCompressEngine() {
+        return new ImageFileCompressEngine();
     }
 
 
@@ -95,5 +112,42 @@ public class PictureSelectorUtil {
         options.isForbidSkipMultipleCrop(false);
         options.setMaxScaleMultiplier(100);
         return options;
+    }
+
+    /**
+     * 自定义压缩
+     */
+    private static class ImageFileCompressEngine implements CompressFileEngine {
+
+        @Override
+        public void onStartCompress(Context context, ArrayList<Uri> source, OnKeyValueResultCallbackListener call) {
+            Luban.with(context).load(source).ignoreBy(100).setRenameListener(new OnRenameListener() {
+                @Override
+                public String rename(String filePath) {
+                    int indexOf = filePath.lastIndexOf(".");
+                    String postfix = indexOf != -1 ? filePath.substring(indexOf) : ".jpg";
+                    return DateUtils.getCreateFileName("CMP_") + postfix;
+                }
+            }).setCompressListener(new OnNewCompressListener() {
+                @Override
+                public void onStart() {
+
+                }
+
+                @Override
+                public void onSuccess(String source, File compressFile) {
+                    if (call != null) {
+                        call.onCallback(source, compressFile.getAbsolutePath());
+                    }
+                }
+
+                @Override
+                public void onError(String source, Throwable e) {
+                    if (call != null) {
+                        call.onCallback(source, null);
+                    }
+                }
+            }).launch();
+        }
     }
 }
